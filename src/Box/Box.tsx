@@ -15,7 +15,7 @@ import {
   resolveWidthClassName,
   resolveHeightClassName,
 } from './dimension';
-import { Color, resolveBackgroundColorClassName } from '../Color';
+import { Color } from '../Color';
 
 export type BoxProps = HTMLAttributes<HTMLOrSVGElement> & {
   element?: ElementType;
@@ -45,9 +45,9 @@ export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
   const widthClassName = resolveWidthClassName(width);
   const heightClassName = resolveHeightClassName(height);
   const flexClassName = resolveFlexClassName(flex);
-  const backgroundColorClassName = resolveBackgroundColorClassName(
-    backgroundColor
-  );
+  const backgroundColorClassName = backgroundColor
+    ? `bg-${backgroundColor}`
+    : '';
 
   return createElement(element, {
     className: cx(
