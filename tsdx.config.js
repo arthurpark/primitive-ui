@@ -4,6 +4,7 @@ module.exports = {
     config.plugins.push(
       postcss({
         modules: true,
+        extract: true,
       })
     );
     return config;
