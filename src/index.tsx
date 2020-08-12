@@ -1,4 +1,4 @@
-// import './index.module.css';
+import './index.module.css';
 
 export { Color } from './Color';
 export { Box, SpacingScale } from './Box';

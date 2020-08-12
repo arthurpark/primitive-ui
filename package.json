@@ -41,11 +41,13 @@
     "husky": "^4.2.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "rollup-plugin-postcss": "^3.1.5",
     "tsdx": "^0.13.2",
     "tslib": "^2.0.1",
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "tailwindcss": "^1.6.2"
   }
 }
