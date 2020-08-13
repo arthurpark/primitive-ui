@@ -1,52 +1,61 @@
 import * as React from 'react';
-import {
-  Box,
-  Color,
-  SpacingScale,
-  Columns,
-  H1,
-  H2,
-  H3,
-  H4,
-  H5,
-  H6,
-} from '../.';
-import { Section } from './components/Section';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { TypographyScreen } from './Typography';
+import { BoxScreen } from './Box';
+import { Box, Columns, Spacer } from '../.';
 
 import '../dist/elemental-ui.esm.css';
 
 export default function App() {
-  const SCALE: SpacingScale[] = [0, 1, 2, 3, 4, 5, 6, 8];
   return (
-    <>
-      <Section title="Typography">
-        <H1>Heading 1</H1>
-        <H2>Heading 2</H2>
-        <H3>Heading 3</H3>
-        <H4>Heading 4</H4>
-        <H5>Heading 5</H5>
-        <H6>Heading 6</H6>
-      </Section>
-      <Section title="Box">
-        {SCALE.map(scale => {
-          const bg = `gray-${scale * 100 + 100}` as Color;
-          return (
-            <Box key={scale} padding={{ all: 1 }} backgroundColor={'white'}>
-              <Box padding={{ all: scale }} backgroundColor={bg}>
-                <Columns
-                  justify="center"
-                  align="center"
-                  width={'full'}
-                  height={16}
-                  backgroundColor={'purple-200'}
-                >
-                  {`Padding Scale: ${scale}`}
-                </Columns>
-              </Box>
-            </Box>
-          );
-        })}
-      </Section>
-    </>
+    <Router>
+      <Header />
+
+      <ScreenContainer>
+        <Switch>
+          <Route path="/typography">
+            <TypographyScreen />
+          </Route>
+          <Route path="/box">
+            <BoxScreen />
+          </Route>
+          <Route path="/">
+            <h1>Home</h1>
+          </Route>
+        </Switch>
+      </ScreenContainer>
+    </Router>
+  );
+}
+
+function Header() {
+  return (
+    <Box
+      element="nav"
+      padding={{ x: 4 }}
+      backgroundColor="white"
+      className="fixed z-10 top-0 inset-x-0 shadow"
+    >
+      <Columns element="ul" align="center" height={16}>
+        <Box element="li" padding={{ x: 4 }}>
+          <Link to="/">Home</Link>
+        </Box>
+        <Box element="li" padding={{ x: 4 }}>
+          <Link to="/typography">Typography</Link>
+        </Box>
+        <Box element="li" padding={{ x: 4 }}>
+          <Link to="/box">Box</Link>
+        </Box>
+      </Columns>
+    </Box>
+  );
+}
+
+function ScreenContainer(props: any) {
+  return (
+    <Box>
+      <Spacer height={16} />
+      {props.children}
+    </Box>
   );
 }
