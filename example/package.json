@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "react-app-polyfill": "^1.0.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "tailwindcss": "^2.0.2"
   },
   "alias": {
     "react": "../node_modules/react",
