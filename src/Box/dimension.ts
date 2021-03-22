@@ -3,7 +3,7 @@ import { Size } from '../utils/responsive';
 
 enum Prefix {
   WIDTH = 'w',
-  HEIGHT = 'h'
+  HEIGHT = 'h',
 }
 
 type Auto = 'auto';

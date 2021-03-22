@@ -5,7 +5,7 @@ export type SpacingScale = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 enum Prefix {
   PADDING = 'p',
-  MARGIN = 'm'
+  MARGIN = 'm',
 }
 
 enum Direction {
@@ -15,7 +15,7 @@ enum Direction {
   LEFT = 'l',
   RIGHT = 'r',
   TOP = 't',
-  BOTTOM = 'b'
+  BOTTOM = 'b',
 }
 
 function getSpacing(
@@ -33,18 +33,29 @@ function getSpacing(
   return `${spacingSize}${type}${spacingDirection}-${spacingScale}`;
 }
 
-export type Spacing = {
-  all?: SpacingScale;
-  y?: SpacingScale;
-  x?: SpacingScale;
-  top?: SpacingScale;
-  bottom?: SpacingScale;
-  left?: SpacingScale;
-  right?: SpacingScale;
-};
+export type Spacing =
+  | SpacingScale
+  | { x: SpacingScale; top?: SpacingScale; bottom?: SpacingScale; y?: never }
+  | { y: SpacingScale; left?: SpacingScale; right?: SpacingScale; x?: never }
+  | {
+      x: SpacingScale;
+      y: SpacingScale;
+      top?: never;
+      botton?: never;
+      left?: never;
+      right?: never;
+    }
+  | {
+      top?: SpacingScale;
+      bottom?: SpacingScale;
+      left?: SpacingScale;
+      right?: SpacingScale;
+      x?: never;
+      y?: never;
+    };
 
 export function resolvePaddingClassName(spacing?: Spacing | Spacing[]) {
-  if (!spacing) {
+  if (!spacing && typeof spacing !== 'number') {
     return '';
   }
 
@@ -52,13 +63,23 @@ export function resolvePaddingClassName(spacing?: Spacing | Spacing[]) {
 }
 
 function resolveClassName(prefix: Prefix, spacing: Spacing, size: Size) {
-  const { all, x, y, top, bottom, left, right } = spacing;
+  if (typeof spacing === 'number') {
+    return getSpacing(prefix, spacing, Direction.ALL, size);
+  }
 
   // Always resolve to the most specific
-  const topScale = all ?? y ?? top ?? 0;
-  const bottomScale = all ?? y ?? bottom ?? 0;
-  const leftScale = all ?? x ?? left ?? 0;
-  const rightScale = all ?? x ?? right ?? 0;
+  const topScale =
+    'y' in spacing ? spacing.y : 'top' in spacing ? spacing.top : undefined;
+  const bottomScale =
+    'y' in spacing
+      ? spacing.y
+      : 'bottom' in spacing
+      ? spacing.bottom
+      : undefined;
+  const leftScale =
+    'x' in spacing ? spacing.x : 'left' in spacing ? spacing.left : undefined;
+  const rightScale =
+    'x' in spacing ? spacing.x : 'right' in spacing ? spacing.right : undefined;
 
   if (
     topScale === bottomScale &&

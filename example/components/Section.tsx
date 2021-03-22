@@ -4,7 +4,7 @@ import { Box, Stack, H2 } from '../../.';
 export function Section(props: any) {
   const { title, children } = props;
   return (
-    <Stack padding={{ all: 4 }}>
+    <Stack padding={4}>
       <Box
         padding={{ y: 2 }}
         backgroundColor="white"
