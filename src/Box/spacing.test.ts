@@ -1,49 +1,69 @@
-import { resolvePaddingClassName, SpacingScale } from './spacing';
+import { resolvePadding, resolveMargin } from './spacing';
 
 describe('spacing', () => {
-  describe('resolvePaddingClassName', () => {
-    it('should return empty string when missing value', () => {
-      expect(resolvePaddingClassName()).toBe('');
-    });
-
-    it('should return empty string when value is 0', () => {
-      expect(resolvePaddingClassName(0)).toBe('p-0');
-      expect(resolvePaddingClassName({ x: 0 })).toBe('px-0');
-      expect(resolvePaddingClassName({ y: 0 })).toBe('py-0');
-      expect(resolvePaddingClassName({ right: 0 })).toBe('pr-0');
+  describe('resolveMargin', () => {
+    it('should return className for: 0', () => {
+      expect(resolveMargin(0)).toBe('m-0');
+      expect(resolveMargin({ x: 0 })).toBe('mx-0');
+      expect(resolveMargin({ y: 0 })).toBe('my-0');
+      expect(resolveMargin({ right: 0 })).toBe('mr-0');
     });
 
     it('should return className for all directions', () => {
-      expect(resolvePaddingClassName(4)).toBe('p-4');
+      expect(resolveMargin(4)).toBe('m-4');
     });
 
     it('should return className for a direction', () => {
-      expect(resolvePaddingClassName({ x: 4 })).toBe('px-4');
-      expect(resolvePaddingClassName({ y: 4 })).toBe('py-4');
-      expect(resolvePaddingClassName({ top: 4 })).toBe('pt-4');
-      expect(resolvePaddingClassName({ bottom: 4 })).toBe('pb-4');
-      expect(resolvePaddingClassName({ left: 4 })).toBe('pl-4');
-      expect(resolvePaddingClassName({ right: 4 })).toBe('pr-4');
+      expect(resolveMargin({ x: 4 })).toBe('mx-4');
+      expect(resolveMargin({ y: 4 })).toBe('my-4');
+      expect(resolveMargin({ top: 4 })).toBe('mt-4');
+      expect(resolveMargin({ bottom: 4 })).toBe('mb-4');
+      expect(resolveMargin({ left: 4 })).toBe('ml-4');
+      expect(resolveMargin({ right: 4 })).toBe('mr-4');
     });
 
     it('should return classNames for multiple directions', () => {
-      expect(resolvePaddingClassName({ x: 3, y: 4 })).toContain('px-3');
-      expect(resolvePaddingClassName({ x: 3, y: 4 })).toContain('py-4');
+      expect(resolveMargin({ x: 3, y: 4 })).toContain('mx-3');
+      expect(resolveMargin({ x: 3, y: 4 })).toContain('my-4');
 
-      expect(resolvePaddingClassName({ x: 3, top: 4 })).toContain('px-3');
-      expect(resolvePaddingClassName({ x: 3, top: 4 })).toContain('pt-4');
+      expect(resolveMargin({ x: 3, top: 4 })).toContain('mx-3');
+      expect(resolveMargin({ x: 3, top: 4 })).toContain('mt-4');
 
-      expect(resolvePaddingClassName({ top: 3, right: 4 })).toContain('pt-3');
-      expect(resolvePaddingClassName({ top: 3, right: 4 })).toContain('pr-4');
+      expect(resolveMargin({ top: 3, right: 4 })).toContain('mt-3');
+      expect(resolveMargin({ top: 3, right: 4 })).toContain('mr-4');
+    });
+  });
+
+  describe('resolvePadding', () => {
+    it('should return className for: 0', () => {
+      expect(resolvePadding(0)).toBe('p-0');
+      expect(resolvePadding({ x: 0 })).toBe('px-0');
+      expect(resolvePadding({ y: 0 })).toBe('py-0');
+      expect(resolvePadding({ right: 0 })).toBe('pr-0');
     });
 
-    it('should return responsive classNames', () => {
-      const responsiveProp: SpacingScale[] = [2, 3, 4, 5];
+    it('should return className for all directions', () => {
+      expect(resolvePadding(4)).toBe('p-4');
+    });
 
-      expect(resolvePaddingClassName(responsiveProp)).toContain('p-2');
-      expect(resolvePaddingClassName(responsiveProp)).toContain('md:p-3');
-      expect(resolvePaddingClassName(responsiveProp)).toContain('lg:p-4');
-      expect(resolvePaddingClassName(responsiveProp)).toContain('xl:p-5');
+    it('should return className for a direction', () => {
+      expect(resolvePadding({ x: 4 })).toBe('px-4');
+      expect(resolvePadding({ y: 4 })).toBe('py-4');
+      expect(resolvePadding({ top: 4 })).toBe('pt-4');
+      expect(resolvePadding({ bottom: 4 })).toBe('pb-4');
+      expect(resolvePadding({ left: 4 })).toBe('pl-4');
+      expect(resolvePadding({ right: 4 })).toBe('pr-4');
+    });
+
+    it('should return classNames for multiple directions', () => {
+      expect(resolvePadding({ x: 3, y: 4 })).toContain('px-3');
+      expect(resolvePadding({ x: 3, y: 4 })).toContain('py-4');
+
+      expect(resolvePadding({ x: 3, top: 4 })).toContain('px-3');
+      expect(resolvePadding({ x: 3, top: 4 })).toContain('pt-4');
+
+      expect(resolvePadding({ top: 3, right: 4 })).toContain('pt-3');
+      expect(resolvePadding({ top: 3, right: 4 })).toContain('pr-4');
     });
   });
 });

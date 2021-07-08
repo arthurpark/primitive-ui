@@ -1,7 +1,5 @@
 import cx from 'classnames';
-import { Size } from '../utils/responsive';
-
-export type SpacingScale = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+import { Scale, Pixel } from '../scale';
 
 enum Prefix {
   PADDING = 'p',
@@ -18,138 +16,121 @@ enum Direction {
   BOTTOM = 'b',
 }
 
-function getSpacing(
-  type: Prefix,
-  scale?: SpacingScale,
-  direction?: Direction,
-  size?: Size
-) {
-  if (typeof scale !== 'number') {
-    return '';
-  }
-  const spacingSize = size || Size.ALL;
-  const spacingScale = scale;
-  const spacingDirection = direction || Direction.ALL;
-  return `${spacingSize}${type}${spacingDirection}-${spacingScale}`;
-}
+type PaddingScale = Pixel | Scale;
 
-export type Spacing =
-  | SpacingScale
-  | { x: SpacingScale; top?: SpacingScale; bottom?: SpacingScale; y?: never }
-  | { y: SpacingScale; left?: SpacingScale; right?: SpacingScale; x?: never }
+export type Padding =
+  | PaddingScale
+  | { x: PaddingScale; top?: PaddingScale; bottom?: PaddingScale; y?: never }
+  | { y: PaddingScale; left?: PaddingScale; right?: PaddingScale; x?: never }
   | {
-      x: SpacingScale;
-      y: SpacingScale;
+      x: PaddingScale;
+      y: PaddingScale;
       top?: never;
-      botton?: never;
+      bottom?: never;
       left?: never;
       right?: never;
     }
   | {
-      top?: SpacingScale;
-      bottom?: SpacingScale;
-      left?: SpacingScale;
-      right?: SpacingScale;
+      top?: PaddingScale;
+      bottom?: PaddingScale;
+      left?: PaddingScale;
+      right?: PaddingScale;
       x?: never;
       y?: never;
     };
 
-export function resolvePaddingClassName(spacing?: Spacing | Spacing[]) {
-  if (!spacing && typeof spacing !== 'number') {
+// prettier-ignore
+type NegativeScale = 
+  | '-px' 
+  | -0.5 | -1 | -1.5 | -2 | -2.5 | -3 | -3.5 | -4 | -5 | -6 | -7 | -8 | -9 | -10 
+  | -11 | -12 | -14 | -16 | -20 | -24 | -28 | -32 | -36 | -40 | -44 | -48 
+  | -52 | -56 | -60 | -64 | -72 | -80 | -96;
+
+type MarginScale = PaddingScale | NegativeScale;
+
+export type Margin =
+  | MarginScale
+  | { x: MarginScale; top?: MarginScale; bottom?: MarginScale; y?: never }
+  | { y: MarginScale; left?: MarginScale; right?: MarginScale; x?: never }
+  | {
+      x: MarginScale;
+      y: MarginScale;
+      top?: never;
+      bottom?: never;
+      left?: never;
+      right?: never;
+    }
+  | {
+      top?: MarginScale;
+      bottom?: MarginScale;
+      left?: MarginScale;
+      right?: MarginScale;
+      x?: never;
+      y?: never;
+    };
+
+function getClassName(
+  prefix: Prefix,
+  direction: Direction,
+  scale?: PaddingScale | MarginScale
+): string {
+  if (scale == null) {
     return '';
   }
 
-  return resolveResponsiveProps(Prefix.PADDING, spacing);
+  if (scale === '-px') {
+    return `-${prefix}${direction}-px`;
+  }
+
+  if (scale < 0) {
+    return `-${prefix}${direction}-${scale}`;
+  }
+
+  return `${prefix}${direction}-${scale}`;
 }
 
-function resolveClassName(prefix: Prefix, spacing: Spacing, size: Size) {
-  if (typeof spacing === 'number') {
-    return getSpacing(prefix, spacing, Direction.ALL, size);
+function resolveClassName(prefix: Prefix, spacing: Padding | Margin): string {
+  if (typeof spacing === 'number' || typeof spacing === 'string') {
+    return getClassName(prefix, Direction.ALL, spacing);
   }
 
   // Always resolve to the most specific
-  const topScale =
-    'y' in spacing ? spacing.y : 'top' in spacing ? spacing.top : undefined;
-  const bottomScale =
-    'y' in spacing
-      ? spacing.y
-      : 'bottom' in spacing
-      ? spacing.bottom
-      : undefined;
-  const leftScale =
-    'x' in spacing ? spacing.x : 'left' in spacing ? spacing.left : undefined;
-  const rightScale =
-    'x' in spacing ? spacing.x : 'right' in spacing ? spacing.right : undefined;
+  const top = 'y' in spacing ? spacing.y : spacing.top;
+  const bottom = 'y' in spacing ? spacing.y : spacing.bottom;
+  const left = 'x' in spacing ? spacing.x : spacing.left;
+  const right = 'x' in spacing ? spacing.x : spacing.right;
 
-  if (
-    topScale === bottomScale &&
-    leftScale === rightScale &&
-    topScale === leftScale
-  ) {
-    return getSpacing(prefix, topScale, Direction.ALL, size);
+  if (top === bottom && left === right && top === left) {
+    return getClassName(prefix, Direction.ALL, top);
   }
 
   const classNames = [];
 
-  if (topScale === bottomScale) {
-    classNames.push(getSpacing(prefix, topScale, Direction.Y, size));
+  if (top === bottom) {
+    classNames.push(getClassName(prefix, Direction.Y, top));
   } else {
     classNames.push(
-      getSpacing(prefix, topScale, Direction.TOP, size),
-      getSpacing(prefix, bottomScale, Direction.BOTTOM, size)
+      getClassName(prefix, Direction.TOP, top),
+      getClassName(prefix, Direction.BOTTOM, bottom)
     );
   }
 
-  if (leftScale === rightScale) {
-    classNames.push(getSpacing(prefix, leftScale, Direction.X, size));
+  if (left === right) {
+    classNames.push(getClassName(prefix, Direction.X, left));
   } else {
     classNames.push(
-      getSpacing(prefix, leftScale, Direction.LEFT, size),
-      getSpacing(prefix, rightScale, Direction.RIGHT, size)
+      getClassName(prefix, Direction.LEFT, left),
+      getClassName(prefix, Direction.RIGHT, right)
     );
   }
 
   return cx(classNames);
 }
 
-function resolveResponsiveProps(prefix: Prefix, spacing: Spacing | Spacing[]) {
-  if (!Array.isArray(spacing)) {
-    return resolveClassName(prefix, spacing, Size.ALL);
-  }
+export function resolvePadding(value: Padding): string {
+  return resolveClassName(Prefix.PADDING, value);
+}
 
-  const [sm, md, lg, xl] = spacing;
-
-  if (spacing.length <= 1) {
-    return sm ? resolveClassName(prefix, sm, Size.ALL) : '';
-  }
-
-  if (spacing.length === 2) {
-    return cx(
-      resolveClassName(prefix, sm, Size.ALL),
-      resolveClassName(prefix, md, Size.MEDIUM)
-    );
-  }
-
-  if (spacing.length === 3) {
-    return cx(
-      resolveClassName(prefix, sm, Size.ALL),
-      resolveClassName(prefix, md, Size.MEDIUM),
-      resolveClassName(prefix, lg, Size.LARGE)
-    );
-  }
-
-  if (spacing.length === 4) {
-    return cx(
-      resolveClassName(prefix, sm, Size.ALL),
-      resolveClassName(prefix, md, Size.MEDIUM),
-      resolveClassName(prefix, lg, Size.LARGE),
-      resolveClassName(prefix, xl, Size.XLARGE)
-    );
-  }
-
-  throw new Error(
-    `Invalid reponsive ${
-      prefix === Prefix.PADDING ? 'padding' : 'margin'
-    } value`
-  );
+export function resolveMargin(value: Margin): string {
+  return resolveClassName(Prefix.MARGIN, value);
 }

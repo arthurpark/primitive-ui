@@ -131,3 +131,7 @@ type Pink =
   | 'pink-700'
   | 'pink-800'
   | 'pink-900';
+
+export function resolveBackgroundColor(color: Color): string {
+  return `bg-${color}`;
+}

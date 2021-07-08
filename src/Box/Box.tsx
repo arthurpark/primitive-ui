@@ -7,32 +7,30 @@ import {
   HTMLAttributes,
 } from 'react';
 import cx from 'classnames';
-import { Spacing, resolvePaddingClassName } from './spacing';
-import { FlexScale, resolveFlexClassName } from './flex';
-import {
-  Width,
-  Height,
-  resolveWidthClassName,
-  resolveHeightClassName,
-} from './dimension';
-import { Color } from '../Color';
+import { Responsive, responsive } from '../utils';
+import { Padding, Margin, resolveMargin, resolvePadding } from './spacing';
+import { FlexValue, resolveFlex } from './flex';
+import { Width, Height, resolveWidth, resolveHeight } from './dimension';
+import { Color, resolveBackgroundColor } from '../Color';
 
 export type BoxProps = HTMLAttributes<HTMLOrSVGElement> & {
   element?: ElementType;
   children?: ReactNode;
   style?: CSSProperties;
   className?: string;
-  padding?: Spacing | Spacing[]; // ALL X Y L R T B
-  width?: Width | Width[];
-  height?: Height | Height[];
-  flex?: FlexScale | FlexScale[];
-  backgroundColor?: Color;
+  margin?: Responsive<Margin>;
+  padding?: Responsive<Padding>;
+  width?: Responsive<Width>;
+  height?: Responsive<Height>;
+  flex?: Responsive<FlexValue>;
+  backgroundColor?: Responsive<Color>;
 };
 
 export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
   const {
     element = 'div',
     className,
+    margin,
     padding,
     width,
     height,
@@ -41,16 +39,19 @@ export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
     ...rest
   } = props;
 
-  const paddingClassName = resolvePaddingClassName(padding);
-  const widthClassName = resolveWidthClassName(width);
-  const heightClassName = resolveHeightClassName(height);
-  const flexClassName = resolveFlexClassName(flex);
-  const backgroundColorClassName = backgroundColor
-    ? `bg-${backgroundColor}`
-    : '';
+  const marginClassName = responsive(resolveMargin, margin);
+  const paddingClassName = responsive(resolvePadding, padding);
+  const widthClassName = responsive(resolveWidth, width);
+  const heightClassName = responsive(resolveHeight, height);
+  const flexClassName = responsive(resolveFlex, flex);
+  const backgroundColorClassName = responsive(
+    resolveBackgroundColor,
+    backgroundColor
+  );
 
   return createElement(element, {
     className: cx(
+      marginClassName,
       paddingClassName,
       widthClassName,
       heightClassName,
