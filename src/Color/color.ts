@@ -23,6 +23,7 @@ type White = 'white';
 type Black = 'black';
 
 type Gray =
+  | 'gray-50'
   | 'gray-100'
   | 'gray-200'
   | 'gray-300'
@@ -34,6 +35,7 @@ type Gray =
   | 'gray-900';
 
 type Red =
+  | 'red-50'
   | 'red-100'
   | 'red-200'
   | 'red-300'
@@ -44,18 +46,8 @@ type Red =
   | 'red-800'
   | 'red-900';
 
-type Orange =
-  | 'orange-100'
-  | 'orange-200'
-  | 'orange-300'
-  | 'orange-400'
-  | 'orange-500'
-  | 'orange-600'
-  | 'orange-700'
-  | 'orange-800'
-  | 'orange-900';
-
 type Yellow =
+  | 'yellow-50'
   | 'yellow-100'
   | 'yellow-200'
   | 'yellow-300'
@@ -67,6 +59,7 @@ type Yellow =
   | 'yellow-900';
 
 type Green =
+  | 'green-50'
   | 'green-100'
   | 'green-200'
   | 'green-300'
@@ -77,18 +70,8 @@ type Green =
   | 'green-800'
   | 'green-900';
 
-type Teal =
-  | 'teal-100'
-  | 'teal-200'
-  | 'teal-300'
-  | 'teal-400'
-  | 'teal-500'
-  | 'teal-600'
-  | 'teal-700'
-  | 'teal-800'
-  | 'teal-900';
-
 type Blue =
+  | 'blue-50'
   | 'blue-100'
   | 'blue-200'
   | 'blue-300'
@@ -100,6 +83,7 @@ type Blue =
   | 'blue-900';
 
 type Indigo =
+  | 'indigo-50'
   | 'indigo-100'
   | 'indigo-200'
   | 'indigo-300'
@@ -111,6 +95,7 @@ type Indigo =
   | 'indigo-900';
 
 type Purple =
+  | 'purple-50'
   | 'purple-100'
   | 'purple-200'
   | 'purple-300'
@@ -122,6 +107,7 @@ type Purple =
   | 'purple-900';
 
 type Pink =
+  | 'pink-50'
   | 'pink-100'
   | 'pink-200'
   | 'pink-300'
