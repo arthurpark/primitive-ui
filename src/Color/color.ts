@@ -5,10 +5,8 @@ export type Color =
   | Black
   | Gray
   | Red
-  | Orange
   | Yellow
   | Green
-  | Teal
   | Blue
   | Purple
   | Indigo

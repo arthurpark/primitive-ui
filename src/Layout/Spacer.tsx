@@ -1,8 +1,11 @@
 import React from 'react';
-import { Box, BoxProps } from '../Box';
+import { FlexItemProps, FlexItem } from './FlexItem';
 
-export function Spacer(props: BoxProps) {
-  const { width, height, ...rest } = props;
+type Props = Omit<FlexItemProps, 'children'>;
 
-  return <Box width={width} height={height} {...rest} />;
+// Spacer is special type of <FlexItem> without children
+export function Spacer(props: Props) {
+  const { width, height, ...flexItemProps } = props;
+
+  return <FlexItem width={width} height={height} {...flexItemProps} />;
 }

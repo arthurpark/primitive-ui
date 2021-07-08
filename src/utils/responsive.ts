@@ -1,6 +1,6 @@
 import cx from 'classnames';
 
-export enum Size {
+enum Size {
   ALL = '',
   SMALL = 'sm',
   MEDIUM = 'md',

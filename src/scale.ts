@@ -12,4 +12,4 @@ export type Full = 'full';
 
 export type Screen = 'screen';
 
-export type Size = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type Size = 'all' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';

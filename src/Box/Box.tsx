@@ -9,7 +9,6 @@ import {
 import cx from 'classnames';
 import { Responsive, responsive } from '../utils';
 import { Padding, Margin, resolveMargin, resolvePadding } from './spacing';
-import { FlexValue, resolveFlex } from './flex';
 import { Width, Height, resolveWidth, resolveHeight } from './dimension';
 import { Color, resolveBackgroundColor } from '../Color';
 
@@ -22,7 +21,6 @@ export type BoxProps = HTMLAttributes<HTMLOrSVGElement> & {
   padding?: Responsive<Padding>;
   width?: Responsive<Width>;
   height?: Responsive<Height>;
-  flex?: Responsive<FlexValue>;
   backgroundColor?: Responsive<Color>;
 };
 
@@ -34,7 +32,6 @@ export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
     padding,
     width,
     height,
-    flex,
     backgroundColor,
     ...rest
   } = props;
@@ -43,7 +40,6 @@ export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
   const paddingClassName = responsive(resolvePadding, padding);
   const widthClassName = responsive(resolveWidth, width);
   const heightClassName = responsive(resolveHeight, height);
-  const flexClassName = responsive(resolveFlex, flex);
   const backgroundColorClassName = responsive(
     resolveBackgroundColor,
     backgroundColor
@@ -55,7 +51,6 @@ export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
       paddingClassName,
       widthClassName,
       heightClassName,
-      flexClassName,
       backgroundColorClassName,
       className
     ),
