@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "cli": "npx ntl -A --exclude cli",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
+  },
+  "ntl": {
+    "descriptions": {}
   },
   "dependencies": {
     "next": "latest",
@@ -15,6 +19,7 @@
   "devDependencies": {
     "@tailwindcss/jit": "0.1.3",
     "autoprefixer": "^10.0.4",
+    "ntl": "^5.1.0",
     "postcss": "^8.1.10",
     "tailwindcss": "^2.2.4"
   },

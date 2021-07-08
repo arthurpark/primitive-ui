@@ -6,7 +6,7 @@ import { Responsive, responsive } from '../utils';
 
 export type FlexItemProps = BoxProps & {
   flex?: Responsive<Flex>;
-  grow: Responsive<Grow>;
+  grow?: Responsive<Grow>;
   shrink?: Responsive<Shrink>;
 };
 
