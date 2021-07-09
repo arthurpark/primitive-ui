@@ -1,44 +1,55 @@
-import React, { ReactNode, ElementType, CSSProperties } from 'react';
+import React, { ElementType, HTMLAttributes } from 'react';
 import cx from 'classnames';
-import { Color } from '../Color';
-import { resolveFontSizeClassName } from './fontSize';
+import { Color } from '../color';
 import {
   FontFamily,
   FontSize,
   FontSmoothing,
   FontStyle,
   FontWeight,
+  FontVariantNumeric,
   LetterSpacing,
   LineHeight,
+  ListStyleType,
+  ListStylePosition,
   TextAlign,
   Opacity,
   TextDecoration,
   TextTransform,
+  TextOverflow,
   VerticalAlign,
   Whitespace,
   WordBreak,
 } from './types';
+import {
+  Responsive,
+  responsive,
+  createPrefixValueResolver,
+  resolveValue,
+} from '../utils';
+import { resolveTextOverflow } from './utils';
 
-export type TextProps = {
+export type TextProps = HTMLAttributes<HTMLOrSVGElement> & {
   element?: ElementType;
-  family?: FontFamily;
-  size?: FontSize;
-  smoothing?: FontSmoothing;
-  fontStyle?: FontStyle;
-  weight?: FontWeight;
-  letterSpacing?: LetterSpacing;
-  lineHeight?: LineHeight;
-  align?: TextAlign;
-  color?: Color;
-  opacity?: Opacity;
-  decoration?: TextDecoration;
-  transform?: TextTransform;
-  verticalAlign?: VerticalAlign;
-  whitespace?: Whitespace;
-  wordBreak?: WordBreak;
-  className?: string;
-  style?: CSSProperties;
-  children?: ReactNode;
+  family?: Responsive<FontFamily>;
+  size?: Responsive<FontSize>;
+  smoothing?: Responsive<FontSmoothing>;
+  fontStyle?: Responsive<FontStyle>;
+  weight?: Responsive<FontWeight>;
+  variantNumeric?: Responsive<FontVariantNumeric>;
+  letterSpacing?: Responsive<LetterSpacing>;
+  lineHeight?: Responsive<LineHeight>;
+  listStyle?: Responsive<ListStyleType>;
+  listStylePosition?: Responsive<ListStylePosition>;
+  align?: Responsive<TextAlign>;
+  color?: Responsive<Color>;
+  opacity?: Responsive<Opacity>;
+  decoration?: Responsive<TextDecoration>;
+  transform?: Responsive<TextTransform>;
+  overflow?: Responsive<TextOverflow>;
+  verticalAlign?: Responsive<VerticalAlign>;
+  whitespace?: Responsive<Whitespace>;
+  wordBreak?: Responsive<WordBreak>;
 };
 
 export function Text(props: TextProps) {
@@ -49,13 +60,17 @@ export function Text(props: TextProps) {
     smoothing,
     fontStyle,
     weight,
+    variantNumeric,
     letterSpacing,
     lineHeight,
+    listStyle,
+    listStylePosition,
     align,
     color,
     opacity,
     decoration,
     transform,
+    overflow,
     verticalAlign,
     whitespace,
     wordBreak,
@@ -65,21 +80,37 @@ export function Text(props: TextProps) {
 
   return React.createElement(element, {
     className: cx(
-      family ? `font-${family}` : '',
-      resolveFontSizeClassName(size),
-      smoothing,
-      fontStyle,
-      weight ? `font-${weight}` : '',
-      letterSpacing ? `tracking-${letterSpacing}` : '',
-      lineHeight ? `leading-${lineHeight}` : '',
-      align ? `text-${align}` : '',
-      color ? `text-${color}` : '',
-      opacity ? `text-opacity-${opacity}` : '',
-      decoration,
-      transform,
-      verticalAlign ? `align-${verticalAlign}` : '',
-      whitespace ? `whitespace-${whitespace}` : '',
-      wordBreak,
+      responsive<FontFamily>(createPrefixValueResolver('font'), family),
+      responsive<FontSize>(createPrefixValueResolver('text'), size),
+      responsive<FontSmoothing>(resolveValue, smoothing),
+      responsive<FontStyle>(resolveValue, fontStyle),
+      responsive<FontWeight>(createPrefixValueResolver('font'), weight),
+      responsive<FontVariantNumeric>(resolveValue, variantNumeric),
+      responsive<LetterSpacing>(
+        createPrefixValueResolver('tracking'),
+        letterSpacing
+      ),
+      responsive<LineHeight>(createPrefixValueResolver('leading'), lineHeight),
+      responsive<ListStyleType>(createPrefixValueResolver('list'), listStyle),
+      responsive<ListStylePosition>(
+        createPrefixValueResolver('list'),
+        listStylePosition
+      ),
+      responsive<TextAlign>(createPrefixValueResolver('text'), align),
+      responsive<Color>(createPrefixValueResolver('text'), color),
+      responsive<Opacity>(createPrefixValueResolver('text-opacity'), opacity),
+      responsive<TextDecoration>(resolveValue, decoration),
+      responsive<TextTransform>(resolveValue, transform),
+      responsive<TextOverflow>(resolveTextOverflow, overflow),
+      responsive<VerticalAlign>(
+        createPrefixValueResolver('align'),
+        verticalAlign
+      ),
+      responsive<Whitespace>(
+        createPrefixValueResolver('whitespace'),
+        whitespace
+      ),
+      responsive<WordBreak>(createPrefixValueResolver('break'), wordBreak),
       className
     ),
     ...rest,

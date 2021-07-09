@@ -1,2 +1,2 @@
 export * from './responsive';
-export * from './prefixValue';
+export * from './resolvers';

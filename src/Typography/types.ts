@@ -10,7 +10,10 @@ export type FontSize =
   | '3xl'
   | '4xl'
   | '5xl'
-  | '6xl';
+  | '6xl'
+  | '7xl'
+  | '8xl'
+  | '9xl';
 
 export type FontSmoothing = 'antialiased' | 'subpixel-antialiased';
 
@@ -26,6 +29,17 @@ export type FontWeight =
   | 'bold'
   | 'extrabold'
   | 'black';
+
+export type FontVariantNumeric =
+  | 'normal-nums'
+  | 'ordinal'
+  | 'slashed-zero'
+  | 'lining-nums'
+  | 'oldstyle-nums'
+  | 'proportional-nums'
+  | 'tabular-nums'
+  | 'diagonal-fractions'
+  | 'stacked-fractions';
 
 export type LetterSpacing =
   | 'tighter'
@@ -51,9 +65,28 @@ export type LineHeight =
   | 'relaxed'
   | 'loose';
 
+export type ListStyleType = 'none' | 'disc' | 'decimal';
+
+export type ListStylePosition = 'inside' | 'outside';
+
 export type TextAlign = 'left' | 'cennter' | 'right' | 'justify';
 
-export type Opacity = '0' | '25' | '50' | '75' | '100';
+export type Opacity =
+  | 0
+  | 5
+  | 10
+  | 20
+  | 25
+  | 30
+  | 40
+  | 50
+  | 60
+  | 70
+  | 75
+  | 80
+  | 90
+  | 95
+  | 100;
 
 export type TextDecoration = 'underline' | 'line-through' | 'no-underline';
 
@@ -62,6 +95,8 @@ export type TextTransform =
   | 'lowercase'
   | 'capitalize'
   | 'normal-case';
+
+export type TextOverflow = 'truncate' | 'ellipsis' | 'clip';
 
 export type VerticalAlign =
   | 'baseline'
@@ -73,10 +108,6 @@ export type VerticalAlign =
 
 export type Whitespace = 'normal' | 'no-wrap' | 'pre' | 'pre-line' | 'pre-wrap';
 
-export type WordBreak =
-  | 'break-normal'
-  | 'break-word'
-  | 'break-all'
-  | 'truncate';
+export type WordBreak = 'break-normal' | 'break-word' | 'break-all';
 
 export type InputType = 'text' | 'number' | 'email' | 'password';

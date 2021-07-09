@@ -7,10 +7,10 @@ import {
   HTMLAttributes,
 } from 'react';
 import cx from 'classnames';
-import { Responsive, responsive } from '../utils';
+import { Responsive, responsive, createPrefixValueResolver } from '../utils';
 import { Padding, Margin, resolveMargin, resolvePadding } from './spacing';
 import { Width, Height, resolveWidth, resolveHeight } from './dimension';
-import { Color, resolveBackgroundColor } from '../Color';
+import { Color } from '../color';
 
 export type BoxProps = HTMLAttributes<HTMLOrSVGElement> & {
   element?: ElementType;
@@ -41,7 +41,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
   const widthClassName = responsive(resolveWidth, width);
   const heightClassName = responsive(resolveHeight, height);
   const backgroundColorClassName = responsive(
-    resolveBackgroundColor,
+    createPrefixValueResolver('bg'),
     backgroundColor
   );
 

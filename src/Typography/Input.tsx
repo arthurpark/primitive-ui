@@ -1,7 +1,12 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import cx from 'classnames';
-import { Color } from '../Color';
-import { resolveFontSizeClassName } from './fontSize';
+import { Color } from '../color';
+import {
+  Responsive,
+  responsive,
+  createPrefixValueResolver,
+  resolveValue,
+} from '../utils';
 import {
   InputType,
   FontFamily,
@@ -9,91 +14,105 @@ import {
   FontSmoothing,
   FontStyle,
   FontWeight,
+  FontVariantNumeric,
   LetterSpacing,
   LineHeight,
+  ListStyleType,
+  ListStylePosition,
   TextAlign,
   Opacity,
   TextDecoration,
   TextTransform,
+  TextOverflow,
   VerticalAlign,
   Whitespace,
   WordBreak,
 } from './types';
+import { TextProps } from './Text';
+import { resolveTextOverflow } from './utils';
 
-type InputProps = {
+type InputProps = TextProps & {
   type?: InputType;
-  fontFamily?: FontFamily;
-  fontSize?: FontSize;
-  smoothing?: FontSmoothing;
-  fontStyle?: FontStyle;
-  weight?: FontWeight;
-  letterSpacing?: LetterSpacing;
-  lineHeight?: LineHeight;
-  placeholderColor?: Color;
-  placeholderOpacity?: Opacity;
-  align?: TextAlign;
-  color?: Color;
-  opacity?: Opacity;
-  decoration?: TextDecoration;
-  transform?: TextTransform;
-  verticalAlign?: VerticalAlign;
-  whitespace?: Whitespace;
-  wordBreak?: WordBreak;
   id?: string;
   name?: string;
   value?: string;
-  className?: string;
-  style?: CSSProperties;
+  placeholderColor?: Responsive<Color>;
+  placeholderOpacity?: Responsive<Opacity>;
 };
 
 export function Input(props: InputProps) {
   const {
     type = 'text',
-    fontFamily = 'sans',
-    fontSize,
+    family,
+    size,
     smoothing,
     fontStyle,
     weight,
+    variantNumeric,
     letterSpacing,
     lineHeight,
-    placeholderColor,
-    placeholderOpacity,
+    listStyle,
+    listStylePosition,
     align,
     color,
     opacity,
     decoration,
     transform,
+    overflow,
     verticalAlign,
     whitespace,
     wordBreak,
+    placeholderColor,
+    placeholderOpacity,
     className,
-    ...rest
+    ...textProps
   } = props;
 
   return (
     <input
       type={type}
       className={cx(
-        fontFamily ? `font-${fontFamily}` : '',
-        resolveFontSizeClassName(fontSize),
-        smoothing,
-        fontStyle,
-        weight ? `font-${weight}` : '',
-        letterSpacing ? `tracking-${letterSpacing}` : '',
-        lineHeight ? `leading-${lineHeight}` : '',
-        placeholderColor ? `placeholder-${placeholderColor}` : '',
-        placeholderOpacity ? `placeholder-${placeholderOpacity}` : '',
-        align ? `text-${align}` : '',
-        color ? `text-${color}` : '',
-        opacity ? `text-opacity-${opacity}` : '',
-        decoration,
-        transform,
-        verticalAlign ? `align-${verticalAlign}` : '',
-        whitespace ? `whitespace-${whitespace}` : '',
-        wordBreak,
+        responsive<FontFamily>(createPrefixValueResolver('font'), family),
+        responsive<FontSize>(createPrefixValueResolver('text'), size),
+        responsive<FontSmoothing>(resolveValue, smoothing),
+        responsive<FontStyle>(resolveValue, fontStyle),
+        responsive<FontWeight>(createPrefixValueResolver('font'), weight),
+        responsive<FontVariantNumeric>(resolveValue, variantNumeric),
+        responsive<LetterSpacing>(
+          createPrefixValueResolver('tracking'),
+          letterSpacing
+        ),
+        responsive<LineHeight>(
+          createPrefixValueResolver('leading'),
+          lineHeight
+        ),
+        responsive<ListStyleType>(createPrefixValueResolver('list'), listStyle),
+        responsive<ListStylePosition>(
+          createPrefixValueResolver('list'),
+          listStylePosition
+        ),
+        responsive<TextAlign>(createPrefixValueResolver('text'), align),
+        responsive<Color>(createPrefixValueResolver('text'), color),
+        responsive<Opacity>(createPrefixValueResolver('text-opacity'), opacity),
+        responsive<TextDecoration>(resolveValue, decoration),
+        responsive<TextTransform>(resolveValue, transform),
+        responsive<TextOverflow>(resolveTextOverflow, overflow),
+        responsive<VerticalAlign>(
+          createPrefixValueResolver('align'),
+          verticalAlign
+        ),
+        responsive<Whitespace>(
+          createPrefixValueResolver('whitespace'),
+          whitespace
+        ),
+        responsive<WordBreak>(createPrefixValueResolver('break'), wordBreak),
+        responsive<Color>(
+          createPrefixValueResolver('placeholder'),
+          placeholderColor
+        ),
         className
       )}
-      {...rest}
+      {...textProps}
     />
   );
 }
