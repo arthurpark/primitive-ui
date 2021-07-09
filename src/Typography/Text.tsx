@@ -1,6 +1,7 @@
 import React, { ElementType, HTMLAttributes } from 'react';
 import cx from 'classnames';
 import { Color } from '../color';
+import { Opacity } from '../scale';
 import {
   FontFamily,
   FontSize,
@@ -13,7 +14,6 @@ import {
   ListStyleType,
   ListStylePosition,
   TextAlign,
-  Opacity,
   TextDecoration,
   TextTransform,
   TextOverflow,

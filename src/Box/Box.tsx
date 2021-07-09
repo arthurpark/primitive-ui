@@ -10,7 +10,20 @@ import cx from 'classnames';
 import { Responsive, responsive, createPrefixValueResolver } from '../utils';
 import { Padding, Margin, resolveMargin, resolvePadding } from './spacing';
 import { Width, Height, resolveWidth, resolveHeight } from './dimension';
-import { Color } from '../color';
+import {
+  BackgroundAttachment,
+  BackgroundClip,
+  BackgroundColor,
+  BackgroundOpacity,
+  BackgroundOrigin,
+  BackgroundPosition,
+  BackgroundRepeat,
+  BackgroundSize,
+  BackgroundImage,
+  GradientFrom,
+  GradientVia,
+  GradientTo,
+} from './background';
 
 export type BoxProps = HTMLAttributes<HTMLOrSVGElement> & {
   element?: ElementType;
@@ -21,7 +34,22 @@ export type BoxProps = HTMLAttributes<HTMLOrSVGElement> & {
   padding?: Responsive<Padding>;
   width?: Responsive<Width>;
   height?: Responsive<Height>;
-  backgroundColor?: Responsive<Color>;
+  background?: {
+    attachment?: Responsive<BackgroundAttachment>;
+    clip?: Responsive<BackgroundClip>;
+    color?: Responsive<BackgroundColor>;
+    opacity?: Responsive<BackgroundOpacity>;
+    origin?: Responsive<BackgroundOrigin>;
+    position?: Responsive<BackgroundPosition>;
+    repeat?: Responsive<BackgroundRepeat>;
+    size?: Responsive<BackgroundSize>;
+    image?: Responsive<BackgroundImage>;
+    gradient?: {
+      from?: Responsive<GradientFrom>;
+      via?: Responsive<GradientVia>;
+      to?: Responsive<GradientTo>;
+    };
+  };
 };
 
 export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
@@ -32,7 +60,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
     padding,
     width,
     height,
-    backgroundColor,
+    background,
     ...rest
   } = props;
 
@@ -40,9 +68,55 @@ export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
   const paddingClassName = responsive(resolvePadding, padding);
   const widthClassName = responsive(resolveWidth, width);
   const heightClassName = responsive(resolveHeight, height);
+
+  const backgroundAttachmentClassName = responsive(
+    createPrefixValueResolver('bg'),
+    background?.attachment
+  );
+  const backgroundClipClassName = responsive(
+    createPrefixValueResolver('bg-clip'),
+    background?.clip
+  );
   const backgroundColorClassName = responsive(
     createPrefixValueResolver('bg'),
-    backgroundColor
+    background?.color
+  );
+  const backgroundOpacityClassName = responsive(
+    createPrefixValueResolver('bg-opacity'),
+    background?.opacity
+  );
+  const backgroundOriginClassName = responsive(
+    createPrefixValueResolver('bg-origin'),
+    background?.origin
+  );
+  const backgroundPositionClassName = responsive(
+    createPrefixValueResolver('bg'),
+    background?.position
+  );
+  const backgroundRepeatClassName = responsive(
+    createPrefixValueResolver('bg'),
+    background?.repeat
+  );
+  const backgroundSizeClassName = responsive(
+    createPrefixValueResolver('bg'),
+    background?.size
+  );
+  const backgroundImageClassName = responsive(
+    createPrefixValueResolver('bg'),
+    background?.image
+  );
+  const gradientFromClassName = responsive(
+    createPrefixValueResolver('from'),
+    background?.gradient?.from
+  );
+  const gradientViaClassName = responsive(
+    createPrefixValueResolver('bg'),
+    background?.gradient?.via
+  );
+
+  const gradientToClassName = responsive(
+    createPrefixValueResolver('bg'),
+    background?.gradient?.to
   );
 
   return createElement(element, {
@@ -51,7 +125,18 @@ export const Box = forwardRef<HTMLElement, BoxProps>((props, ref) => {
       paddingClassName,
       widthClassName,
       heightClassName,
+      backgroundAttachmentClassName,
+      backgroundClipClassName,
       backgroundColorClassName,
+      backgroundOpacityClassName,
+      backgroundOriginClassName,
+      backgroundPositionClassName,
+      backgroundRepeatClassName,
+      backgroundSizeClassName,
+      backgroundImageClassName,
+      gradientFromClassName,
+      gradientViaClassName,
+      gradientToClassName,
       className
     ),
     ...rest,

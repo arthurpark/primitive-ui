@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Color } from '../color';
+import { Opacity } from '../scale';
 import {
   Responsive,
   responsive,
@@ -20,7 +21,6 @@ import {
   ListStyleType,
   ListStylePosition,
   TextAlign,
-  Opacity,
   TextDecoration,
   TextTransform,
   TextOverflow,
