@@ -11,8 +11,3 @@ export type Wrap = 'no-wrap' | 'wrap' | 'wrap-reverse';
 export type Flex = 'none' | 1 | 'auto' | 'initial';
 export type Grow = 'grow' | 'grow-0';
 export type Shrink = 'shrink' | 'shrink-0';
-
-export function createFlexResolver(prefix: 'flex' | 'justify' | 'items') {
-  return (value: Direction | Justify | Align | Wrap | Grow | Shrink): string =>
-    `${prefix}-${value}`;
-}

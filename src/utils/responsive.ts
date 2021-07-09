@@ -9,11 +9,11 @@ enum Size {
   XXLARGE = '2xl',
 }
 
-export type Responsive<T> = T | [T, T, T?, T?, T?];
+export type Responsive<T> = T | [all: T, sm: T, md?: T, lg?: T, xl?: T, xxl?: T];
 
-export function responsive(
-  resolverFn: (value: any) => string,
-  value?: Responsive<any>
+export function responsive<T>(
+  resolverFn: (value: T) => string,
+  value?: Responsive<T>
 ): string {
   if (value == null) {
     return '';

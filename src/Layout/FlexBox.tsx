@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { Box, BoxProps } from '../Box';
-import { Direction, Justify, Align, Wrap, createFlexResolver } from './utils';
-import { Responsive, responsive } from '../utils';
+import { Direction, Justify, Align, Wrap } from './types';
+import { Responsive, responsive, createPrefixValueResolver } from '../utils';
 
 export type FlexBoxProps = BoxProps & {
   direction: Responsive<Direction>;
@@ -15,15 +15,21 @@ export function FlexBox(props: FlexBoxProps) {
   const { className, direction, align, justify, wrap, ...boxProps } = props;
 
   const flexDirectionClassNames = responsive(
-    createFlexResolver('flex'),
+    createPrefixValueResolver('flex'),
     direction
   );
   const justifyContentClassNames = responsive(
-    createFlexResolver('justify'),
+    createPrefixValueResolver('justify'),
     justify
   );
-  const alignItemsClassNames = responsive(createFlexResolver('items'), align);
-  const flexWrapClassNames = responsive(createFlexResolver('flex'), wrap);
+  const alignItemsClassNames = responsive(
+    createPrefixValueResolver('items'),
+    align
+  );
+  const flexWrapClassNames = responsive(
+    createPrefixValueResolver('flex'),
+    wrap
+  );
 
   return (
     <Box
