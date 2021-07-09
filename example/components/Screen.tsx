@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { Box, Stack, H1 } from '../../.';
+import { FlexItem, Stack, H1 } from '../../dist';
 
 export function Screen(props: any) {
   return (
-    <Stack padding={4} className="relative z-0">
-      <Box padding={{ y: 2 }}>
+    <Stack padding={{ top: 16, bottom: 4, x: 4 }} className="relative z-0">
+      <FlexItem padding={{ y: 2 }}>
         <H1>{props.title}</H1>
-      </Box>
-      {props.children}
+      </FlexItem>
+
+      <FlexItem>{props.children}</FlexItem>
     </Stack>
   );
 }

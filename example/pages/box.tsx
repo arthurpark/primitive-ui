@@ -9,11 +9,11 @@ export default function BoxPage() {
   return (
     <Screen title="Box">
       <Section title="Spacing">
-        {SCALE.map((scale, index) => {
-          const bg = `gray-${scale * 100 + 100}` as Color;
-          return (
-            <Box key={index} padding={1} backgroundColor={'white'}>
-              <Box padding={scale as Padding} backgroundColor={bg}>
+        <div className="space-y-3">
+          {SCALE.map((scale, index) => {
+            const bg = `gray-${scale * 100 + 100}` as Color;
+            return (
+              <Box key={index} padding={scale as Padding} backgroundColor={bg}>
                 <Columns
                   justify="center"
                   align="center"
@@ -24,9 +24,30 @@ export default function BoxPage() {
                   {`Padding Scale: ${scale}`}
                 </Columns>
               </Box>
-            </Box>
-          );
-        })}
+            );
+          })}
+        </div>
+      </Section>
+
+      <Section title="Spacing">
+        <div className="space-y-3">
+          {SCALE.map((scale, index) => {
+            const bg = `gray-${scale * 100 + 100}` as Color;
+            return (
+              <Box key={index} padding={scale as Padding} backgroundColor={bg}>
+                <Columns
+                  justify="center"
+                  align="center"
+                  width={'full'}
+                  height={16}
+                  backgroundColor={'purple-100'}
+                >
+                  {`Padding Scale: ${scale}`}
+                </Columns>
+              </Box>
+            );
+          })}
+        </div>
       </Section>
     </Screen>
   );
