@@ -9,8 +9,7 @@ export function Section(props: any): JSX.Element {
       <FlexItem
         padding={{ y: 2 }}
         background={{ color: 'white' }}
-        className="sticky top-16 border-b-2 border-gray-300 bg-opacity-75"
-        style={{ backdropFilter: 'blur(4px)' }}
+        className="sticky top-16 border-b-2 border-gray-300 bg-opacity-75 backdrop-filter backdrop-blur-lg"
       >
         <H2>{title}</H2>
       </FlexItem>
