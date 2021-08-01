@@ -1,4 +1,4 @@
-import React, { ElementType, HTMLAttributes } from 'react';
+import { createElement, ElementType, HTMLAttributes } from 'react';
 import cx from 'classnames';
 import { Color } from '../color';
 import { Opacity } from '../scale';
@@ -52,7 +52,7 @@ export type TextProps = HTMLAttributes<HTMLOrSVGElement> & {
   wordBreak?: Responsive<WordBreak>;
 };
 
-export function Text(props: TextProps) {
+export function Text(props: TextProps): JSX.Element {
   const {
     element = 'div',
     family,
@@ -78,7 +78,7 @@ export function Text(props: TextProps) {
     ...rest
   } = props;
 
-  return React.createElement(element, {
+  return createElement(element, {
     className: cx(
       responsive<FontFamily>(createPrefixValueResolver('font'), family),
       responsive<FontSize>(createPrefixValueResolver('text'), size),

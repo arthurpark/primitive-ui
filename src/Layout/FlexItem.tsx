@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'classnames';
 import { Box, BoxProps } from '../Box';
 import { Flex, Grow, Shrink } from './types';
@@ -10,7 +9,7 @@ export type FlexItemProps = BoxProps & {
   shrink?: Responsive<Shrink>;
 };
 
-export function FlexItem(props: FlexItemProps) {
+export function FlexItem(props: FlexItemProps): JSX.Element {
   const { className, flex, grow, shrink, ...boxProps } = props;
 
   const flexClassNames = responsive(createPrefixValueResolver('flex'), flex);

@@ -1,5 +1,4 @@
 import cx from 'classnames';
-import React from 'react';
 import { Auto, Pixel, Scale, NegativeScale } from 'scale';
 import { Responsive, responsive, resolveValue } from 'utils';
 import { Box, BoxProps } from 'Box';
@@ -76,7 +75,7 @@ type PositionProps = SpecificPositionProps & {
   position: Responsive<Position>;
 };
 
-function Position(props: PositionProps) {
+function PositionBase(props: PositionProps): JSX.Element {
   const {
     className,
     position,
@@ -115,24 +114,24 @@ function Position(props: PositionProps) {
   );
 }
 
-export function Static(props: SpecificPositionProps) {
-  return <Position position="static" {...props} />;
+export function Static(props: SpecificPositionProps): JSX.Element {
+  return <PositionBase position="static" {...props} />;
 }
 
-export function Relative(props: SpecificPositionProps) {
-  return <Position position="relative" {...props} />;
+export function Relative(props: SpecificPositionProps): JSX.Element {
+  return <PositionBase position="relative" {...props} />;
 }
 
-export function Absolute(props: SpecificPositionProps) {
-  return <Position position="absolute" {...props} />;
+export function Absolute(props: SpecificPositionProps): JSX.Element {
+  return <PositionBase position="absolute" {...props} />;
 }
 
-export function Fixed(props: SpecificPositionProps) {
-  return <Position position="fixed" {...props} />;
+export function Fixed(props: SpecificPositionProps): JSX.Element {
+  return <PositionBase position="fixed" {...props} />;
 }
 
-export function Sticky(props: SpecificPositionProps) {
-  return <Position position="sticky" {...props} />;
+export function Sticky(props: SpecificPositionProps): JSX.Element {
+  return <PositionBase position="sticky" {...props} />;
 }
 
 function getClassName(dir: Direction, value?: PositionScale): string {

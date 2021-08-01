@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'classnames';
 import { Box, BoxProps } from '../Box';
 import { Direction, Justify, Align, Wrap } from './types';
@@ -11,7 +10,7 @@ export type FlexBoxProps = BoxProps & {
   wrap?: Responsive<Wrap>;
 };
 
-export function FlexBox(props: FlexBoxProps) {
+export function FlexBox(props: FlexBoxProps): JSX.Element {
   const { className, direction, align, justify, wrap, ...boxProps } = props;
 
   const flexDirectionClassNames = responsive(

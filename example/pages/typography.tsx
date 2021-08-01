@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { H1, H2, H3, H4, H5, H6, Text } from '../../dist';
+import { Text } from '../../dist';
+import { H1, H2, H3, H4, H5, H6 } from 'components/Typography';
 import { Screen } from 'components/Screen';
 import { Section } from 'components/Section';
 
-export default function TypographyPage() {
+export default function TypographyPage(): JSX.Element {
   return (
     <Screen title="Typography">
       <Section title="Heading">

@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'classnames';
 import { Color } from '../color';
 import { Opacity } from '../scale';
@@ -40,7 +39,7 @@ type InputProps = TextProps & {
   placeholderOpacity?: Responsive<Opacity>;
 };
 
-export function Input(props: InputProps) {
+export function Input(props: InputProps): JSX.Element {
   const {
     type = 'text',
     family,

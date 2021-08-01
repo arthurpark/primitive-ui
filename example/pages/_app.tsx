@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { Box, Columns, FlexItem, Spacer } from '../../dist';
+import { Box, Columns, FlexItem } from '../../dist';
 
 import '../styles/globals.css';
 
-function Header() {
+function Header(): JSX.Element {
   return (
     <Box
       element="nav"
       height={16}
       padding={{ x: 4 }}
-      backgroundColor="white"
+      background={{ color: 'white' }}
       className="fixed z-10 top-0 inset-x-0 shadow"
     >
       <Columns element="ul" align="center" height={'full'}>
@@ -27,7 +27,7 @@ function Header() {
   );
 }
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }): JSX.Element {
   return (
     <>
       <Header />
@@ -35,5 +35,3 @@ function MyApp({ Component, pageProps }) {
     </>
   );
 }
-
-export default MyApp;

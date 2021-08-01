@@ -1,9 +1,8 @@
-import * as React from 'react';
 import { Box, Color, Padding, Columns } from '../../dist';
 import { Screen } from 'components/Screen';
 import { Section } from 'components/Section';
 
-export default function BoxPage() {
+export default function BoxPage(): JSX.Element {
   const SCALE = [0, 1, 2, 3, 4, 5, 6, 8];
 
   return (
@@ -13,13 +12,17 @@ export default function BoxPage() {
           {SCALE.map((scale, index) => {
             const bg = `gray-${scale * 100 + 100}` as Color;
             return (
-              <Box key={index} padding={scale as Padding} backgroundColor={bg}>
+              <Box
+                key={index}
+                padding={scale as Padding}
+                background={{ color: bg }}
+              >
                 <Columns
                   justify="center"
                   align="center"
                   width={'full'}
                   height={16}
-                  backgroundColor={'purple-100'}
+                  background={{ color: 'purple-100' }}
                 >
                   {`Padding Scale: ${scale}`}
                 </Columns>
@@ -34,13 +37,17 @@ export default function BoxPage() {
           {SCALE.map((scale, index) => {
             const bg = `gray-${scale * 100 + 100}` as Color;
             return (
-              <Box key={index} padding={scale as Padding} backgroundColor={bg}>
+              <Box
+                key={index}
+                padding={scale as Padding}
+                background={{ color: bg }}
+              >
                 <Columns
                   justify="center"
                   align="center"
                   width={'full'}
                   height={16}
-                  backgroundColor={'purple-100'}
+                  background={{ color: 'purple-100' }}
                 >
                   {`Padding Scale: ${scale}`}
                 </Columns>
