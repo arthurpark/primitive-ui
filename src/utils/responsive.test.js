@@ -1,6 +1,6 @@
 import { responsive } from './responsive';
 
-function resolverFn(_value: any): string {
+function resolverFn() {
   return 'classname';
 }
 
