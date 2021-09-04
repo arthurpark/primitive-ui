@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import React from 'react';
 import { Box, BoxProps } from '../Box';
 import { Flex, Grow, Shrink } from './types';
 import { Responsive, responsive, createPrefixValueResolver } from '../utils';

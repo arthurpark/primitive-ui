@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import React from 'react';
 import { Color } from '../color';
 import { Opacity } from '../scale';
 import {
