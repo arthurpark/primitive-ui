@@ -1,3 +1,4 @@
+import React from 'react';
 import { FlexBox, FlexBoxProps } from './FlexBox';
 
 type StackProps = Omit<FlexBoxProps, 'direction'>;

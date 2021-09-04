@@ -1,3 +1,4 @@
+import React from 'react';
 import { FlexItemProps, FlexItem } from './FlexItem';
 
 type Props = Omit<FlexItemProps, 'children'>;
