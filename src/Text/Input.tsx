@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import cx from 'clsx';
 import React from 'react';
 import { Color } from '../color';
 import { Opacity } from '../scale';

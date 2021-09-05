@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import cx from 'clsx';
 import React from 'react';
 import { Box, BoxProps } from '../Box';
 import { Direction, Justify, Align, Wrap } from './types';

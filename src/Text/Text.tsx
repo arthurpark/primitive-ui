@@ -1,5 +1,5 @@
 import { createElement, ElementType, HTMLAttributes } from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 import { Color } from '../color';
 import { Opacity } from '../scale';
 import {

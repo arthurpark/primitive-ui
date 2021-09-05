@@ -6,7 +6,7 @@ import {
   ElementType,
   HTMLAttributes,
 } from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 import { Responsive, responsive, createPrefixValueResolver } from '../utils';
 import { Padding, Margin, resolveMargin, resolvePadding } from './spacing';
 import { Width, Height, resolveWidth, resolveHeight } from './dimension';
