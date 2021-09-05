@@ -12,7 +12,7 @@
   },
   "scripts": {
     "cli": "npx ntl -A --exclude cli",
-    "start": "yarn build:lib -- --watch",
+    "start": "yarn build:lib --watch",
     "build": "yarn build:clean && yarn build:lib && yarn build:types",
     "build:lib": "yarn swc src -d dist --ignore **/*.test.js",
     "build:clean": "rm -rf dist",
