@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import cx from 'clsx';
 import { Scale, NegativeScale, Pixel } from 'scale';
 
 enum Prefix {

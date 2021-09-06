@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import cx from 'clsx';
 
 enum Size {
   ALL = '',
@@ -9,7 +9,9 @@ enum Size {
   XXLARGE = '2xl',
 }
 
-export type Responsive<T> = T | [all: T, sm: T, md?: T, lg?: T, xl?: T, xxl?: T];
+export type Responsive<T> =
+  | T
+  | [all: T, sm: T, md?: T, lg?: T, xl?: T, xxl?: T];
 
 export function responsive<T>(
   resolverFn: (value: T) => string,

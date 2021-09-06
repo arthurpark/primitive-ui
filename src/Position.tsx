@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import cx from 'clsx';
 import React from 'react';
 import { Auto, Pixel, Scale, NegativeScale } from 'scale';
 import { Responsive, responsive, resolveValue } from 'utils';
