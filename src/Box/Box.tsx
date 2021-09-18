@@ -2,7 +2,6 @@ import {
   createElement,
   forwardRef,
   ReactNode,
-  CSSProperties,
   ElementType,
   HTMLAttributes,
 } from 'react';
@@ -25,11 +24,9 @@ import {
   GradientTo,
 } from './background';
 
-export type BoxProps = HTMLAttributes<HTMLOrSVGElement> & {
+export type BoxProps = HTMLAttributes<HTMLElement> & {
   element?: ElementType;
   children?: ReactNode;
-  style?: CSSProperties;
-  className?: string;
   margin?: Responsive<Margin>;
   padding?: Responsive<Padding>;
   width?: Responsive<Width>;
