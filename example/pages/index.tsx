@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Head from 'next/head';
 import { Box, Text, Stack, Columns } from '../../dist';
 import { Screen } from 'components/Screen';

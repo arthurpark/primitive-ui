@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Link from 'next/link';
 import { Box, Columns, FlexItem, Spacer } from '../../dist';
 
@@ -17,10 +18,10 @@ function Header(): JSX.Element {
           <Link href="/">Home</Link>
         </FlexItem>
         <FlexItem element="li" padding={{ x: 4 }}>
-          <Link href="/typography">Typography</Link>
+          <Link href="/docs/typography">Typography</Link>
         </FlexItem>
         <FlexItem element="li" padding={{ x: 4 }}>
-          <Link href="/box">Box</Link>
+          <Link href="/docs/box">Box</Link>
         </FlexItem>
 
         <Spacer flex="auto" />

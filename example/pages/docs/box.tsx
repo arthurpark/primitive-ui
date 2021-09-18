@@ -1,4 +1,5 @@
-import { Box, Color, Padding, Columns } from '../../dist';
+import * as React from 'react';
+import { Box, Color, Padding, Columns } from '../../../dist';
 import { Screen } from 'components/Screen';
 import { Section } from 'components/Section';
 
