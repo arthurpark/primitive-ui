@@ -20,8 +20,8 @@ export type FontSmoothing = 'antialiased' | 'subpixel-antialiased';
 export type FontStyle = 'italic' | 'non-italic';
 
 export type FontWeight =
-  | 'hairline'
   | 'thin'
+  | 'extralight'
   | 'light'
   | 'normal'
   | 'medium'

@@ -1,4 +1,4 @@
-import { createElement, ElementType, HTMLAttributes } from 'react';
+import { createElement, ElementType, HTMLAttributes, forwardRef } from 'react';
 import cx from 'clsx';
 import { Color } from '../color';
 import { Opacity } from '../scale';
@@ -29,7 +29,7 @@ import {
 } from '../utils';
 import { resolveTextOverflow } from './utils';
 
-export type TextProps = HTMLAttributes<HTMLOrSVGElement> & {
+export type TextProps = HTMLAttributes<HTMLElement> & {
   element?: ElementType;
   family?: Responsive<FontFamily>;
   size?: Responsive<FontSize>;
@@ -52,7 +52,7 @@ export type TextProps = HTMLAttributes<HTMLOrSVGElement> & {
   wordBreak?: Responsive<WordBreak>;
 };
 
-export function Text(props: TextProps): JSX.Element {
+export const Text = forwardRef<HTMLElement, TextProps>((props, ref) => {
   const {
     element = 'div',
     family,
@@ -114,5 +114,6 @@ export function Text(props: TextProps): JSX.Element {
       className
     ),
     ...rest,
+    ref,
   });
-}
+});

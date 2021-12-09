@@ -1,15 +1,8 @@
+import { createElement, AnchorHTMLAttributes, forwardRef } from 'react';
 import cx from 'clsx';
-import { forwardRef, createElement } from 'react';
 import { Color } from '../color';
 import { Opacity } from '../scale';
 import {
-  Responsive,
-  responsive,
-  createPrefixValueResolver,
-  resolveValue,
-} from '../utils';
-import {
-  InputType,
   FontFamily,
   FontSize,
   FontSmoothing,
@@ -28,21 +21,16 @@ import {
   Whitespace,
   WordBreak,
 } from './types';
-import { TextProps } from './Text';
+import { responsive, createPrefixValueResolver, resolveValue } from '../utils';
 import { resolveTextOverflow } from './utils';
+import { TextProps } from './Text';
 
-type InputProps = TextProps & {
-  type?: InputType;
-  id?: string;
-  name?: string;
-  value?: string;
-  placeholderColor?: Responsive<Color>;
-  placeholderOpacity?: Responsive<Opacity>;
-};
+export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> &
+  Omit<TextProps, 'element'>;
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const {
-    type = 'text',
+    href,
     family,
     size,
     smoothing,
@@ -62,15 +50,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     verticalAlign,
     whitespace,
     wordBreak,
-    placeholderColor,
-    placeholderOpacity,
     className,
-    ...textProps
+    ...rest
   } = props;
 
-  return createElement('input', {
-    type,
-
+  return createElement('a', {
     className: cx(
       responsive<FontFamily>(createPrefixValueResolver('font'), family),
       responsive<FontSize>(createPrefixValueResolver('text'), size),
@@ -105,7 +89,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       responsive<WordBreak>(createPrefixValueResolver('break'), wordBreak),
       className
     ),
-    ...textProps,
+    ...rest,
     ref,
   });
 });
