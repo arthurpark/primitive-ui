@@ -7,8 +7,9 @@ import {
 } from 'react';
 import cx from 'clsx';
 import { Responsive, responsive, createPrefixValueResolver } from '../utils';
-import { Padding, Margin, resolveMargin, resolvePadding } from './spacing';
-import { Width, Height, resolveWidth, resolveHeight } from './dimension';
+import { Margin, resolveMargin } from '../utils/margin';
+import { Padding, resolvePadding } from '../utils/padding';
+import { Width, Height, resolveWidth, resolveHeight } from '../utils/dimension';
 import {
   BackgroundAttachment,
   BackgroundClip,

@@ -1,4 +1,5 @@
-export { Color } from './color';
+export { Color } from './tokens/color';
 export { Text, TextProps, Link, LinkProps } from './Text';
-export { Box, Padding, Margin } from './Box';
+export { Box } from './Box';
+export { Padding, Margin } from './utils';
 export { Columns, Stack, Spacer, FlexItem } from './Layout';
