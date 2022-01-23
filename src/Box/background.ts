@@ -1,5 +1,5 @@
-import { Color } from '../color';
-import { Opacity } from '../scale';
+import { Color } from '../tokens/color';
+import { Opacity } from '../tokens/scale';
 
 export type BackgroundAttachment = 'fixed' | 'local' | 'scroll';
 

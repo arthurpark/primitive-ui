@@ -1,6 +1,6 @@
 import cx from 'clsx';
 import React from 'react';
-import { Auto, Pixel, Scale, NegativeScale } from 'scale';
+import { Auto, Pixel, Scale, NegativeScale } from 'tokens/scale';
 import { Responsive, responsive, resolveValue } from 'utils';
 import { Box, BoxProps } from 'Box';
 
@@ -18,6 +18,16 @@ type Position = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
 
 type PositionScale = Scale | Pixel | NegativeScale;
 
+type ExclusiveY<ScaleType> =
+  | { y?: ScaleType; top?: never; bottom?: never }
+  | { y?: never; top?: ScaleType; bottom?: ScaleType };
+
+type ExclusiveX<ScaleType> =
+  | { x?: ScaleType; left?: never; right?: never }
+  | { x?: never; left?: ScaleType; right?: ScaleType };
+
+type ExclusiveXY<ScaleType> = ExclusiveX<ScaleType> & ExclusiveY<ScaleType>;
+
 type PositionDirection =
   | {
       inset?: PositionScale;
@@ -28,42 +38,9 @@ type PositionDirection =
       left?: never;
       right?: never;
     }
-  | {
-      x: PositionScale;
-      top?: PositionScale;
-      bottom?: PositionScale;
-      y?: never;
-      left?: never;
-      right?: never;
+  | (ExclusiveXY<PositionScale> & {
       inset?: never;
-    }
-  | {
-      y: PositionScale;
-      left?: PositionScale;
-      right?: PositionScale;
-      x?: never;
-      top?: never;
-      bottom?: never;
-      inset?: never;
-    }
-  | {
-      x: PositionScale;
-      y: PositionScale;
-      top?: never;
-      bottom?: never;
-      left?: never;
-      right?: never;
-      inset?: never;
-    }
-  | {
-      top?: PositionScale;
-      bottom?: PositionScale;
-      left?: PositionScale;
-      right?: PositionScale;
-      x?: never;
-      y?: never;
-      inset?: never;
-    };
+    });
 
 type ZIndex = 0 | 10 | 20 | 30 | 40 | 50 | Auto;
 

@@ -1,7 +1,7 @@
 import cx from 'clsx';
 import { forwardRef, createElement } from 'react';
-import { Color } from '../color';
-import { Opacity } from '../scale';
+import { Color } from '../tokens/color';
+import { Opacity } from '../tokens/scale';
 import {
   Responsive,
   responsive,
@@ -29,7 +29,7 @@ import {
   WordBreak,
 } from './types';
 import { TextProps } from './Text';
-import { resolveTextOverflow } from './utils';
+import { resolveTextOverflow } from '../utils/text';
 
 type InputProps = TextProps & {
   type?: InputType;

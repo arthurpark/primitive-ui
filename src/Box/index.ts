@@ -1,3 +1,3 @@
 export * from './Box';
-export * from './dimension';
-export * from './spacing';
+export * from '../utils/dimension';
+export * from '../utils/spacing';

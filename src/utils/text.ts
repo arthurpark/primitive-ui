@@ -1,4 +1,4 @@
-import { TextOverflow } from './types';
+import { TextOverflow } from '../Text/types';
 
 export function resolveTextOverflow(value: TextOverflow): string {
   switch (value) {

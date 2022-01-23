@@ -1,7 +1,7 @@
 import { createElement, AnchorHTMLAttributes, forwardRef } from 'react';
 import cx from 'clsx';
-import { Color } from '../color';
-import { Opacity } from '../scale';
+import { Color } from '../tokens/color';
+import { Opacity } from '../tokens/scale';
 import {
   FontFamily,
   FontSize,
@@ -22,7 +22,7 @@ import {
   WordBreak,
 } from './types';
 import { responsive, createPrefixValueResolver, resolveValue } from '../utils';
-import { resolveTextOverflow } from './utils';
+import { resolveTextOverflow } from '../utils/text';
 import { TextProps } from './Text';
 
 export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> &
