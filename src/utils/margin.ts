@@ -1,5 +1,5 @@
 import cx from 'clsx';
-import { Scale, NegativeScale, Pixel } from 'tokens/scale';
+import { Scale, NegativeScale, Pixel } from '../tokens/scale';
 import { SpacingProp, Prefix, Direction } from './spacing';
 
 type MarginScale = Pixel | Scale | NegativeScale;
