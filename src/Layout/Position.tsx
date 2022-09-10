@@ -1,8 +1,8 @@
 import cx from 'clsx';
 import React from 'react';
-import { Auto, Pixel, Scale, NegativeScale } from 'tokens/scale';
-import { Responsive, responsive, resolveValue } from 'utils';
-import { Box, BoxProps } from 'Box';
+import { Auto, Pixel, Scale, NegativeScale } from '../tokens/scale';
+import { Responsive, responsive, resolveValue } from '../utils';
+import { Box, BoxProps } from '../Box';
 
 enum Direction {
   INSET = 'inset',
