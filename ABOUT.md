@@ -1,6 +1,6 @@
-# About element-ui
+# About primitive-ui
 
-element-ui is set of low level React components that can be used to build more complex components. It's powered by excellent Tailwild CSS. It has a simple goal; build composable UI faster, and with less error. It's written in TypeScript to provide correctness and code completion. This was created to solve some of pain potins while I was building a React app with uitility-first CSS.
+primitive-ui is set of low level React components that can be used to build more complex components. It's powered by excellent Tailwild CSS. It has a simple goal; build composable UI faster, and with less error. It's written in TypeScript to provide correctness and code completion. This was created to solve some of pain potins while I was building a React app with uitility-first CSS.
 
 If you're curious about philosophy behind uitility-first CSS, I highly recommend these 2 articles:
 
@@ -40,7 +40,7 @@ Here are some of the disadvantages I experienced:
   ```javascript
   function FancyBox() {
     return (
-      // Tailwind CSS experts, how many mistakes can you find here?
+      // How many mistakes can you find here?
       <div className="w-fool flex-none text-sm font-medieum taxt-gray-500 mt-2">
         Some text
       </div>
@@ -125,7 +125,7 @@ function FancyBox({ children }) {
       // It can also accept soemthing like 2, which will be applied to all sides.
       margin={{ top: 2 }}
       // Box allows `className` so user can set any className in addition to these style props.
-      // However, this is for escape hatch and by using this, user needs to know that conflict can happen
+      // However, this is for escape hatch and by using this, user needs to know that a conflict can happen
       className={''}
     >
       {/* I like how React Native separates <View> and <Text> */}
@@ -176,16 +176,16 @@ What are advantages of using `<Box>` and `<Text>`?
 - When using TypeScript, type checking eliminates use of invalid values and conflicts.
 - It provides better composability. It's easier to apply different width/height in the example compared to when `<Box>` was not available.
 
-Given these benefits, there are some philosophy behind element-ui:
+Given these benefits, there are some philosophy behind primitive-ui:
 
 - Always provide fully typed values for supported style
 - Group related styles to a single prop (e.g. padding/margin/background)
-- Extend elements and provide excape hatch (className): `className` prop is a good example for this, but applies to anything in element-ui. To act as a building block, element-ui has to support all raw HTML element props so user doesn't need to eject when user needs unsupported feature.
+- Extend elements and provide excape hatch (className): `className` prop is a good example for this, but applies to anything in primitive-ui. To act as a building block, primitive-ui has to support all raw HTML element props so user doesn't need to eject when user needs unsupported feature.
 
 Non-goals:
 
-- Support every single class name from Tailwind CSS: This makes implementation complex. element-ui will try to stay simple and small. More mappings will be added as we iterate but it probably won't support 100%.
-- Provide full list of component library: element-ui will initially focus on building blocks so you can make your own components and component library. Even if a component library will be built, element-ui's elements will be usable independently of the component library.
+- Support every single class name from Tailwind CSS: This makes implementation complex. primitive-ui will try to stay simple and small. More mappings will be added as we iterate but it probably won't support 100%.
+- Provide full list of component library: primitive-ui will initially focus on building blocks so you can make your own components and component library. Even if a component library will be built, primitive-ui's elements will be usable independently of the component library.
 
 There are some things I'd like to add, but nothing has been planned yet:
 

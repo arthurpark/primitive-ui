@@ -27,7 +27,7 @@ function Header(): JSX.Element {
         <Spacer flex="auto" />
 
         <FlexItem element="li" padding={{ x: 4 }}>
-          <a href="https://github.com/arthurpark/element-ui">
+          <a href="https://github.com/arthurpark/primitive-ui">
             <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
               <path
                 fillRule="evenodd"

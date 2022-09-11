@@ -1,10 +1,9 @@
 {
-  "name": "element-ui",
+  "name": "@loopify/primitive-ui",
   "version": "0.1.0",
   "author": "Arthur Park",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/element-ui.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
@@ -74,5 +73,20 @@
     "tailwindcss": "^2.2.15",
     "typescript": "^4.4.3"
   },
-  "dependencies": {}
+  "description": "Primitive UI is a low level React component library that can be used as building blocks for more complex components built on top of tailwindcss. tailwindcss has been chosen because of its populirity, familiarity, and wide range of features that it supports. Component API was inspired by [Braid Design System](https://seek-oss.github.io/braid-design-system).",
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arthurpark/primitive-ui.git"
+  },
+  "keywords": [
+    "React",
+    "tailwindcss"
+  ],
+  "bugs": {
+    "url": "https://github.com/arthurpark/primitive-ui/issues"
+  },
+  "homepage": "https://github.com/arthurpark/primitive-ui#readme"
 }
