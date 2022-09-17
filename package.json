@@ -23,7 +23,8 @@
     "test:nocache": "jest --no-cache",
     "test:watch": "jest --watch",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prerelease": "npm version prerelease --preid=next"
   },
   "ntl": {
     "descriptions": {}
