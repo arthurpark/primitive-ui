@@ -22,13 +22,15 @@ export function responsive<T>(
   }
 
   if (Array.isArray(value)) {
+    const [all, sm, md, lg, xl, xxl] = value;
+
     return cx(
-      value[0] ? resolverFn(value[0]) : '',
-      value[1] ? `${Size.SMALL}:${resolverFn(value[1])}` : '',
-      value[2] ? `${Size.MEDIUM}:${resolverFn(value[2])}` : '',
-      value[3] ? `${Size.LARGE}:${resolverFn(value[3])}` : '',
-      value[4] ? `${Size.XLARGE}:${resolverFn(value[4])}` : '',
-      value[5] ? `${Size.XXLARGE}:${resolverFn(value[5])}` : ''
+      all ? resolverFn(all) : '',
+      sm ? `${Size.SMALL}:${resolverFn(sm)}` : '',
+      md ? `${Size.MEDIUM}:${resolverFn(md)}` : '',
+      lg ? `${Size.LARGE}:${resolverFn(lg)}` : '',
+      xl ? `${Size.XLARGE}:${resolverFn(xl)}` : '',
+      xxl ? `${Size.XXLARGE}:${resolverFn(xxl)}` : ''
     );
   }
 
