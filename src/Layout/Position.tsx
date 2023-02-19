@@ -3,6 +3,7 @@ import React from 'react';
 import { Auto, Pixel, Scale, NegativeScale } from '../tokens/scale';
 import { Responsive, responsive, resolveValue } from '../utils';
 import { Box, BoxProps } from '../Box';
+import type { ExclusiveXY } from '../utils/types';
 
 enum Direction {
   INSET = 'inset',
@@ -17,16 +18,6 @@ enum Direction {
 type Position = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
 
 type PositionScale = Scale | Pixel | NegativeScale;
-
-type ExclusiveY<ScaleType> =
-  | { y?: ScaleType; top?: never; bottom?: never }
-  | { y?: never; top?: ScaleType; bottom?: ScaleType };
-
-type ExclusiveX<ScaleType> =
-  | { x?: ScaleType; left?: never; right?: never }
-  | { x?: never; left?: ScaleType; right?: ScaleType };
-
-type ExclusiveXY<ScaleType> = ExclusiveX<ScaleType> & ExclusiveY<ScaleType>;
 
 type PositionDirection =
   | {
