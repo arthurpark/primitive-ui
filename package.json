@@ -6,17 +6,16 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "engines": {
     "node": ">=12"
   },
   "scripts": {
     "cli": "npx ntl -A --exclude cli",
-    "start": "yarn build:lib --watch",
-    "build": "yarn build:clean && yarn build:lib && yarn build:types",
-    "build:lib": "yarn swc src -d dist --ignore **/*.test.js",
+    "start": "bun build:lib --watch",
+    "build": "bun build:clean && bun build:lib && bun build:types",
+    "build:lib": "bun swc src -d dist --ignore **/*.test.js",
     "build:clean": "rm -rf dist",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
     "test": "jest",
@@ -35,7 +34,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn lint"
+      "pre-push": "bun lint"
     }
   },
   "prettier": {
@@ -46,9 +45,9 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.15.7",
-    "@swc/cli": "^0.1.49",
+    "@swc/cli": "^0.5.0",
     "@swc/core": "^1.2.88",
-    "@swc/helpers": "^0.2.13",
+    "@swc/helpers": "^0.5.13",
     "@swc/jest": "^0.2.3",
     "@types/jest": "^27.0.1",
     "@types/react": "^17.0.21",
@@ -72,7 +71,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "tailwindcss": "^2.2.15",
-    "typescript": "^4.4.3"
+    "typescript": "^5.6.3"
   },
   "description": "Primitive UI is a low level React component library that can be used as building blocks for more complex components built on top of tailwindcss. tailwindcss has been chosen because of its populirity, familiarity, and wide range of features that it supports. Component API was inspired by [Braid Design System](https://seek-oss.github.io/braid-design-system).",
   "directories": {
