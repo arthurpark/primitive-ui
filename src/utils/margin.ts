@@ -16,7 +16,7 @@ function getClassName({ direction, scale }: GetClassNameArgs): string {
     return '';
   }
 
-  if (scale === '-px' || scale < 0) {
+  if (scale === '-px' || (scale !== 'px' && scale < 0)) {
     return `-${Prefix.MARGIN}${direction}-px`;
   }
 

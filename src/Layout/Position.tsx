@@ -121,8 +121,8 @@ function getClassName(dir: Direction, value?: PositionScale): string {
 }
 
 function resolveClassName(direction: PositionDirection): string {
-  if ('isnet' in direction) {
-    return getClassName(Direction.INSET, direction);
+  if ('inset' in direction) {
+    return getClassName(Direction.INSET, direction.inset);
   }
 
   // Always resolve to the most specific
