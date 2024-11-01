@@ -15,7 +15,7 @@
     "cli": "npx ntl -A --exclude cli",
     "start": "bun build:lib --watch",
     "build": "bun build:clean && bun build:lib && bun build:types",
-    "build:lib": "bun swc src -d dist --ignore **/*.test.js",
+    "build:lib": "tsc --outDir dist",
     "build:clean": "rm -rf dist",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
     "test": "jest",
